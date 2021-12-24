@@ -24,20 +24,16 @@ class App extends Component {
   addContact = (e, newName, newNumber) => {
     e.preventDefault();
 
-    let contactsNames = [];
+    const isDuplicate = this.state.contacts.find(contact => contact.name === newName);
 
-    for (const contact of this.state.contacts) {
-      contactsNames.push(contact.name);
-    }
-    if (contactsNames.includes(newName)) {
+    if (isDuplicate) {
       alert(`${newName} is already in contacts.`);
-      return;
+    } else {
+      const newContact = { id: nanoid(5), name: newName, number: newNumber };
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, newContact],
+      }));
     }
-
-    const newContact = { id: nanoid(5), name: newName, number: newNumber };
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, newContact],
-    }));
   };
 
   deleteContact = contactId => {

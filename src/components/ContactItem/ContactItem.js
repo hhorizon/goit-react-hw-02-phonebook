@@ -17,7 +17,7 @@ const ContactItem = ({ id, name, number, onDelete }) => {
 ContactItem.propTypes = {
   id: propTypes.string,
   name: propTypes.string,
-  number: propTypes.number,
+  number: propTypes.string,
   onDelete: propTypes.func,
 };
 
